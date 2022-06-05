@@ -218,3 +218,33 @@ INSERT INTO countries(name,population,percent_one_year_change,population_change,
 INSERT INTO countries(name,population,percent_one_year_change,population_change,density_per_sq_km,area_sq_km,net_migrants,fertility_rate,median_age,percent_of_world_pop) VALUES ('U.S. Virgin Islands',104425,-0.15,-153,298,350,-451,2.00,43.00,0);
 INSERT INTO countries(name,population,percent_one_year_change,population_change,density_per_sq_km,area_sq_km,net_migrants,fertility_rate,median_age,percent_of_world_pop) VALUES ('Seychelles',98347,0.62,608,214,460,-200,2.50,34.00,0);
 INSERT INTO countries(name,population,percent_one_year_change,population_change,density_per_sq_km,area_sq_km,net_migrants,fertility_rate,median_age,percent_of_world_pop) VALUES ('Antigua and Barbuda',97929,0.84,811,223,440,0,2.00,34.00,0);
+
+/* Finding the average world population */
+SELECT AVG (population) AS avg_world_population FROM countries;
+
+/* Arranging countries by area_sq_km descending */
+SELECT name, area_sq_km FROM countries
+ORDER BY area_sq_km DESC;
+
+/* Finding most popolous nation in the world */
+SELECT MAX(population) AS most_popoulous_country, name FROM countries;
+
+/* Arranging nations by density per sq km > 150 */
+SELECT density_per_sq_km, name
+FROM countries
+GROUP BY name
+HAVING density_per_sq_km > 150;
+
+/* Finding countries with population over 100mn and a density_per_sq_km > 50 */
+SELECT population, name, density_per_sq_km
+FROM countries
+WHERE population > 100000000
+AND density_per_sq_km > 50;
+
+/* Categorizing nations by their populousness" */
+SELECT name, population,
+CASE WHEN population > 200000000 THEN "Very populated nation"
+WHEN population > 2000000 THEN "Moderately populated nation"
+ELSE "Not very populated nation" 
+END AS "population_description"
+FROM countries;
