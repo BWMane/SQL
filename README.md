@@ -1,1 +1,1 @@
-# SQL Reposirtory where I play around with various SQL functions.
+# SQL Repository where I play around with various SQL functions.
